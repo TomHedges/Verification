@@ -6,24 +6,32 @@ package code;
 /**
  * @author Oded
  *
+ * Commments by Tom Hedges
+ *
  */
 public class NumberEncoder {
 
+	// Initiate empty array of 'chars' called "code" 
 	private char[] code = null;
+	// Initiate empty array of 'chars' called "invertedCode" 
 	private char[] invertedCode = null;
 
 	
 
 	public NumberEncoder(String newCode){
+		// Initiate string called "lim", containing "09"
 		String lim = new String("09");
+		// Initiate array of 'chars' called "limits", containing '0' and '9'
 		char[] limits = lim.toCharArray();
 		
+		// code is null on first pass, so no error
 		if(code != null) throw new NumberFormatException("code already set!");
+		// if entered string is wrong length, then show error
 		if(newCode.length() != 10) throw new NumberFormatException("replaceWithString wrong length!");
 		
 		invertedCode = new char[newCode.length()];		
 		code = newCode.toCharArray();
-		if (!isNumeric(code)) throw new NumberFormatException("Non digit in code!");
+		if (!isNumeric(code)) throw new NumberFormatException("Non digit in code - v01!");
 		
 		for(char i = limits[0]; i<=limits[1]; i++){
 			invertedCode[Character.getNumericValue(code[Character.getNumericValue(i)])] = i;
@@ -49,7 +57,7 @@ public class NumberEncoder {
 			case 7: decodedNumber[i] = code[digit]; break;
 			case 8: decodedNumber[i] = code[digit]; break;
 			case 9: decodedNumber[i] = code[digit]; break;
-			default: throw new NumberFormatException("Non digit in code");
+			default: throw new NumberFormatException("Non digit in code - v02");
 			}
 		}
 		return new String(decodedNumber);
@@ -71,7 +79,7 @@ public class NumberEncoder {
 			case 7: encodedNumber[i] = invertedCode[digit]; break;
 			case 8: encodedNumber[i] = invertedCode[digit]; break;
 			case 9: encodedNumber[i] = invertedCode[digit]; break;
-			default: throw new NumberFormatException("Non digit in number");
+			default: throw new NumberFormatException("Non digit in number - v03");
 			}
 		}
 		return new String(encodedNumber);
