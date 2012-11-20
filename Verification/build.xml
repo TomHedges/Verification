@@ -1,0 +1,6 @@
+<?xml version="1.0"?> 
+<project name="Verification"> 
+	<target name="BTarget"> 
+		<echo>BTarget</echo> 
+	</target>
+</project>
